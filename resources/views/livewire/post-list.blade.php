@@ -1,10 +1,6 @@
 <div class="py-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Header -->
-        {{-- <div class="mb-8">
-            <h1 class="text-4xl font-bold text-gray-900">Berita <span class="text-yellow-600"> Terkini </span></h1>
-            <p class="mt-2 text-lg text-gray-600">Satu - satunya Paguyuban yang punya website, Terdepan, terpercaya, serta amanah</p>
-        </div> --}}
 
         {{-- herro --}}
         <div class="relative overflow-hidden rounded-2xl bg-gray-900 mb-12 h-[400px]">
