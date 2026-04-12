@@ -31,7 +31,7 @@ class Comments extends Component
 
         $this->validate(['newComment' => 'required|string|min:3|max:1000']);
 
-        Comment::create([
+        $comment = Comment::create([
             'post_id' => $this->post->id,
             'user_id' => auth()->id(),
             'content' => $this->newComment,
@@ -39,6 +39,11 @@ class Comments extends Component
         ]);
 
         $this->newComment = '';
+
+        // notify post author about new comment
+        if($this->post->user_id !== auth()->id()){
+            $this->post->user->notify(new \App\Notifications\NewCommentNotification($comment));
+        }    
 
         $this->dispatch('comment-posted');
 
@@ -66,7 +71,7 @@ class Comments extends Component
 
         $this->validate(['replyContent' => 'required|string|min:3|max:1000']);
 
-        Comment::create([
+        $comment =Comment::create([
             'post_id' => $this->post->id,
             'user_id' => auth()->id(),
             'parent_id' => $parentId,
@@ -76,6 +81,11 @@ class Comments extends Component
 
         $this->replyingTo = null;
         $this->replyContent = '';
+
+        // notify post author
+        if($this->post->user_id !== auth()->id()){
+            $this->post->user->notify(new \App\Notifications\NewCommentNotification($comment));
+        }
 
         $this->dispatch('comment-posted');
 

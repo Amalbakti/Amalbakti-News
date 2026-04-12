@@ -15,6 +15,14 @@ Route::view('dashboard', 'dashboard')
 Route::get('/blog',PostList::class)->name('blog.index');
 Route::livewire('blog/{slug}', 'pages::posts.show')->name('blog.show');
 
+Route::get('/unsubscribe/{token}', function ($token) {
+    $subscriber = \App\Models\Subscriber::where('token', $token)->firstOrFail();
+    if ($subscriber->deleted_at) {
+        return view('unsubscribed');
+    }
+    abort(403);
+})->name('unsubscribe');
+
 Route::middleware('auth')->group(function(){
     Route::livewire('/posts', 'pages::posts.index')
     ->middleware('can:create posts')

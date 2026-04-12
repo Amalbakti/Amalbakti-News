@@ -18,35 +18,23 @@ class CategorySeeder extends Seeder
         // Ceate categories
         $categories = [
             [
-                'name' => 'Technology', 'description' => 'Tech news and tutorials.',
-                'color' => '#3b82f6',
-            ],
+                'name' => 'Technology', 'description' => 'Tech news and tutorials',
+                'color' => '#3b82f6'],
             [
-                'name' => 'Business',
-                'description' => 'Business insights and strategies.',
-                'color' => '#10b981',
-            ],
+                'name' => 'Business', 'description' => 'Business insights and strategies',
+                'color' => '#10b981'],
             [
-                'name' => 'Lifestyle',
-                'description' => 'Lifestyle tips and stories.',
-                'color' => '#f59e0b',
-            ],
+                'name' => 'Lifestyle', 'description' => 'Lifestyle tips and stories',
+                'color' => '#f59e0b'],
             [
-                'name' => 'Travel',
-                'description' => 'Travel guides and experiences.',
-                'color' => '#8b5cf6',
-            ],
+                'name' => 'Travel', 'description' => 'Travel guides and experiences',
+                'color' => '#8b5cf6'],
             [
-                'name' => 'Food',
-                'description' => 'Recipes and food reviews.',
-                'color' => '#ef4444'
-            ],
+                'name' => 'Food', 'description' => 'Recipes and food reviews',
+                'color' => '#ef4444'],
         ];
         foreach ($categories as $category) {
-            Category::firstOrCreate(
-                ['slug' => Str::slug($category['name'])],
-                $category
-            );
+            Category::create($category);
         }
 
         // Crete tags
@@ -58,17 +46,15 @@ class CategorySeeder extends Seeder
             'React',
             'livewire',
             'Tailwind CSS',
+            'Mobile App',
             'HTML',
             'Web Development',
             'Design',
             'Tutorials',
         ];
         foreach ($tags as $tag) {
-            Tag::firstOrCreate([
-                'slug' => Str::slug($tag),
-            ], [
-                'name' => $tag,
-            ]);
+            Tag::create([
+                'name' => $tag]);
         }
     }
 }

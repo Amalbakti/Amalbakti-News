@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Post;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
@@ -9,6 +10,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 
 class AppServiceProvider extends ServiceProvider
+
 {
     /**
      * Register any application services.
@@ -24,11 +26,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureDefaults();
+        Post::observe(\App\Observers\PostObserver::class);
     }
 
     protected function configureDefaults(): void
     {
         Date::use(CarbonImmutable::class);
+        
 
         DB::prohibitDestructiveCommands(
             app()->isProduction(),

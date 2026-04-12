@@ -27,11 +27,13 @@
                         {{ __('Users') }}
                     </flux:sidebar.item>
                     @endcan
+
                     @can('manage roles')
                     <flux:sidebar.item icon="tag" :href="route('categories.index')" :current="request()->routeIs('categories.index')" wire:navigate>
                         {{ __('Categories') }}
                     </flux:sidebar.item>
                     @endcan
+                    
                     @can('manage roles')
                     <flux:sidebar.item icon="chat-bubble-left-right" :href="route('comments.index')" :current="request()->routeIs('comments.index')" wire:navigate>
                         {{ __('Comments') }}

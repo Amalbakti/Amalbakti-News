@@ -1,10 +1,36 @@
-<div>
+<div class="py-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Header -->
-        <div class="mb-8">
+        {{-- <div class="mb-8">
             <h1 class="text-4xl font-bold text-gray-900">Berita <span class="text-yellow-600"> Terkini </span></h1>
-            <p class="mt-2 text-lg text-gray-600">Satu - satunya Paguyuban yang punya website, Terdepan, terpercaya, <span class="text-yellow-600">serta amanah</span></p>
+            <p class="mt-2 text-lg text-gray-600">Satu - satunya Paguyuban yang punya website, Terdepan, terpercaya, serta amanah</p>
+        </div> --}}
+
+        {{-- herro --}}
+        <div class="relative overflow-hidden rounded-2xl bg-gray-900 mb-12 h-[400px]">
+            <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 opacity-75">
         </div>
+        <div class="relative bg-gray-50 rounded-lg overflow-hidden mb-12">
+            @if($posts->isNotEmpty() && $posts->first()->featured_image)
+                <img src="{{ Storage::url($posts->first()->featured_image) }}" alt="{{ $posts->first()->title }}" class="w-full h-96 object-cover rounded-lg mb-8">
+            @endif          
+        </div>
+        <div class="absolute inset-0 flex flex-col items-start justify-center px-6 sm:px-12 lg:px-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                {{ $posts->isNotEmpty() ? $posts->first()->title : 'Selamat Datang di Berita Terkini!' }}
+            </h1>
+            <p class="text-lg text-gray-200 mb-6">
+                {{ $posts->isNotEmpty() ? Str::limit($posts->first()->excerpt, 150) : 'Dapatkan informasi terbaru seputar kegiatan, acara, dan berita menarik lainnya dari Paguyuban.' }}
+            </p>
+            @if($posts->isNotEmpty())
+                <a href="{{ route('blog.show', $posts->first()->slug) }}" wire:navigate
+                    class="inline-block px-6 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition">
+                    Baca selengkapnya...
+                </a>
+            @endif
+        </div>
+        </div>   
+        {{-- end herro --}}
 
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
             <!-- Sidebar -->
@@ -15,7 +41,6 @@
                     <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search posts..."
                         class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
                 </div>
-
                 <!-- Categories -->
                 <div class="mb-6">
                     <h3 class="text-sm font-medium text-gray-700 mb-3">Categories</h3>
@@ -123,6 +148,11 @@
         <!-- Pagination -->
         <div class="mt-8">
             {{ $posts->links() }}
+        </div>
+
+        {{-- subscribe section --}}
+        <div class="mt-12">
+            <livewire:blog.subscribe/>
         </div>
     </div>
 </div>
