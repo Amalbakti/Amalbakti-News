@@ -21,7 +21,7 @@ new class extends Component
     #[Validate('required|string|min:10')]
     public string $content = '';
 
-    #[Validate('nullable|image|max:2048')]
+    #[Validate('nullable|image|max:10240')]
     public $featured_image;
 
     #[Validate('required|in:draft,published,archived')]
@@ -61,6 +61,21 @@ new class extends Component
             'categories' => Category::all(), 
             'tags' => Tag::all(), 
         ];
+    }
+
+    public function removeFeaturedImage(): void
+    {
+        $this->featured_image = null;
+    }
+
+    public function removeExistingImage(): void
+    {
+        // Delete old image if exists
+        if ($this->existing_image) {
+            \Storage::disk('public')->delete($this->existing_image);
+        }
+        $this->existing_image = '';
+        $this->post->featured_image = null;
     }
 
     public function update(): void
@@ -106,7 +121,7 @@ new class extends Component
 <div>
     <div class="mb-6">
         <h1 class="text-2xl font-bold text-gray-900">Edit Post</h1>
-        <p class="mt-1 text-sm text-gray-600">Update your blog post</p>
+        <p class="mt-1 text-sm text-gray-600">Update your news post</p>
     </div>
 
     <div class="bg-white rounded-lg border border-gray-200 p-6">
@@ -170,7 +185,6 @@ new class extends Component
                 ></trix-editor>
                 </div>
 
-                </div>
                 @error('content')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                 @enderror
@@ -185,21 +199,34 @@ new class extends Component
                 @if ($existing_image && !$featured_image)
                     <div class="mt-2 mb-3">
                         <p class="text-sm text-gray-600 mb-1">Current image:</p>
-                        <img src="{{ Storage::url($existing_image) }}" class="h-32 w-auto rounded border border-gray-300" alt="Current image">
+                        <div class="relative inline-block">
+                            <img src="{{ Storage::url($existing_image) }}" class="h-32 w-auto rounded border border-gray-300" alt="Current image">
+                            <button 
+                                type="button"
+                                wire:click="removeExistingImage"
+                                class="absolute top-1 right-1 bg-red-500 hover:bg-red-600 text-white rounded-full p-1 text-xs font-bold transition"
+                                title="Remove current image"
+                            >
+                                ✕
+                            </button>
+                        </div>
                     </div>
                 @endif
                 
-                <input 
-                    type="file" 
-                    wire:model="featured_image"
-                    accept="image/*"
-                    class="mt-1 block w-full text-sm text-gray-500
-                        file:mr-4 file:py-2 file:px-4
-                        file:rounded-md file:border-0
-                        file:text-sm file:font-semibold
-                        file:bg-indigo-50 file:text-indigo-700
-                        hover:file:bg-indigo-100"
-                />
+                <div class="mt-1">
+                    <input 
+                        type="file" 
+                        wire:model.defer="featured_image"
+                        accept="image/*"
+                        class="block w-full text-sm text-gray-500
+                            file:mr-4 file:py-2 file:px-4
+                            file:rounded-md file:border-0
+                            file:text-sm file:font-semibold
+                            file:bg-indigo-50 file:text-indigo-700
+                            hover:file:bg-indigo-100"
+                    />
+                    <p class="text-xs text-gray-500 mt-1">Max: 10 MB</p>
+                </div>
                 @error('featured_image')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                 @enderror
@@ -207,12 +234,22 @@ new class extends Component
                 @if ($featured_image)
                     <div class="mt-3" wire:transition>
                         <p class="text-sm text-gray-600 mb-1">New image:</p>
-                        <img src="{{ $featured_image->temporaryUrl() }}" class="h-32 w-auto rounded border border-gray-300" alt="Preview">
+                        <div class="relative inline-block">
+                            <img src="{{ $featured_image->temporaryUrl() }}" class="h-32 w-auto rounded border border-gray-300" alt="Preview">
+                            <button 
+                                type="button"
+                                wire:click="removeFeaturedImage"
+                                class="absolute top-1 right-1 bg-red-500 hover:bg-red-600 text-white rounded-full p-1 text-xs font-bold transition"
+                                title="Remove selected image"
+                            >
+                                ✕
+                            </button>
+                        </div>
                     </div>
                 @endif
                 
                 <div wire:loading wire:target="featured_image" class="mt-2 text-sm text-gray-500">
-                    Uploading...
+                    <span class="inline-block animate-spin mr-2">⟳</span>Uploading...
                 </div>
             </div>
 

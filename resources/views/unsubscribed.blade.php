@@ -17,7 +17,7 @@
             </div>
             <h1 class="text-2xl font-bold text-gray-900 mb-2">Unsubscribed Successfully</h1>
             <p class="text-gray-600 mb-6">You've been removed from our mailing list.</p>
-            <a href="{{ route('blog.index') }}" class="inline-block px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">Back to Berita</a>
+            <a href="{{ route('news.index') }}" class="inline-block px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">Back to Berita</a>
         </div>
     </div>   
 </body>

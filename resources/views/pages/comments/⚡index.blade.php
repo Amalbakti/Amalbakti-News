@@ -123,7 +123,7 @@ new class extends Component
                             <div>
                                 <p class="font-medium text-gray-900">{{ $comment->user->name }}</p>
                                 <p class="text-sm text-gray-500">
-                                    on <a href="{{ route('blog.show', $comment->post->slug) }}" target="_blank" class="text-indigo-600 hover:text-indigo-800">{{ Str::limit($comment->post->title, 40) }}</a>
+                                    on <a href="{{ route('news.show', $comment->post->slug) }}" target="_blank" class="text-indigo-600 hover:text-indigo-800">{{ Str::limit($comment->post->title, 40) }}</a>
                                 </p>
                             </div>
                         </div>

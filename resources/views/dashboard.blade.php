@@ -54,11 +54,11 @@
         <h1 class="text-2xl font-bold text-gray-900">Dashboard</h1>
         <p class="mt-1 text-sm text-gray-600">Welcome back, {{ optional(auth()->user())->name }}!</p>
         <div class="mb-6 flex justify-end">
-        <a href="{{ route('blog.index') }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        <a href="{{ route('news.index') }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
             </svg>
-            Visit Blog
+            Visit News
         </a>
     </div>
     {{-- @island
@@ -152,7 +152,7 @@
                             <a href="{{ route('posts.edit', $post) }}" class="text-blue-600 font-medium hover:underline">{{ $post->title }}</a>
                             <p class="text-xs text-gray-500 mt-1">{{ optional($post->published_at)->format('d M, Y') }}</p>
                         </div>
-                        <div class="ml-4 flex-shrink-0">
+                        <div class="ml-4 shrink-0">
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs bg-indigo-100 text-indigo-800">{{ number_format($post->views_count) }} views</span>
                         </div>
                     </li>

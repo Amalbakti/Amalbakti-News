@@ -25,7 +25,7 @@ class PostList extends Component
     public string $selectedTag = '';
 
     #[Layout('layouts.public')]
-    #[Title('Blog')]
+    #[Title('News')]
     public function render()
     {
         $posts = Post::with(['user','categories','tags'])

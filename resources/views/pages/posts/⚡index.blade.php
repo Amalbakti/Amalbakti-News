@@ -63,7 +63,7 @@ new class extends Component {
 <div>
     <div class="mb-6">
         <h1 class="text-2xl font-bold text-gray-900">Posts</h1>
-        <p class="mt-1 text-sm text-gray-600">Manage your blog posts</p>
+        <p class="mt-1 text-sm text-gray-600">Manage your news posts</p>
     </div>
 
     {{-- filters --}}

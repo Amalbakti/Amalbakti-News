@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Blog;
+namespace App\Livewire\News;
 
 use App\Models\Comment;
 use App\Models\Post;
@@ -103,7 +103,7 @@ class Comments extends Component
         ->get();
 
 
-        return view('livewire.blog.comments',[
+        return view('livewire.news.comments',[
             'comments' => $comments
         ]);
     }

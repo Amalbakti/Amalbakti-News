@@ -3,17 +3,17 @@ use App\Livewire\PostList;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return redirect('/blog');
+    return redirect('/news');
 })->name('home');
 
-// removed duplicate home route (kept redirect to /blog above)
+// removed duplicate home route (kept redirect to /news above)
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
     
-Route::get('/blog',PostList::class)->name('blog.index');
-Route::livewire('blog/{slug}', 'pages::posts.show')->name('blog.show');
+Route::get('/news',PostList::class)->name('news.index');
+Route::livewire('news/{slug}', 'pages::posts.show')->name('news.show');
 
 Route::get('/unsubscribe/{token}', function ($token) {
     $subscriber = \App\Models\Subscriber::where('token', $token)->firstOrFail();

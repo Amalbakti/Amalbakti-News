@@ -1,7 +1,7 @@
 <div class="bg-indigo-600 rounded-lg p-8">
     <div class="max-w-xl mx-auto text-center">
         <h2 class="text-2xl font-bold text-white mb-2">Stay Updated!</h2>
-        <p class="text-indigo-100 mb-6">Get notified when we publish new blog posts, unsubscribe anytime.</p>
+        <p class="text-indigo-100 mb-6">Get notified when we publish new news posts, unsubscribe anytime.</p>
 
         @if (session('subscribe-success'))
             <div class="bg-white rounded-lg p-4 mt-4">

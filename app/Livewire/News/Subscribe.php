@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Blog;
+namespace App\Livewire\News;
 
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -27,6 +27,6 @@ class Subscribe extends Component
     }
     public function render()
     {
-        return view('livewire.blog.subscribe');
+        return view('livewire.news.subscribe');
     }
 }

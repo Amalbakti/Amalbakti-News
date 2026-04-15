@@ -4,9 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Tag;
 use App\Models\Category;
-use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class CategorySeeder extends Seeder
 {
@@ -28,6 +26,12 @@ class CategorySeeder extends Seeder
                 'color' => '#f59e0b'],
             [
                 'name' => 'Travel', 'description' => 'Travel guides and experiences',
+                'color' => '#8b5cf6'],
+            [
+                'name' => 'Religion', 'description' => 'Religious insights and stories',
+                'color' => '#ec4899'],
+            [
+                'name' => 'Pariwisata', 'description' => 'Travel guides and experiences',
                 'color' => '#8b5cf6'],
             [
                 'name' => 'Food', 'description' => 'Recipes and food reviews',

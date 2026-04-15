@@ -40,7 +40,7 @@ new #[Layout('layouts.public')] class extends Component
     <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Back link -->
         <div class="mb-6">
-            <a href="{{ route('blog.index') }}" wire:navigate class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">
+            <a href="{{ route('news.index') }}" wire:navigate class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">
                 ← Back to posts
             </a>
         </div>
@@ -72,7 +72,7 @@ new #[Layout('layouts.public')] class extends Component
                         <div class="flex flex-wrap gap-2">
                             @foreach($post->categories as $category)
                                 <a 
-                                    href="{{ route('blog.index', ['category' => $category->slug]) }}" 
+                                    href="{{ route('news.index', ['category' => $category->slug]) }}" 
                                     wire:navigate
                                     class="px-3 py-1 text-sm font-semibold rounded-full text-white hover:opacity-80 transition"
                                     style="background-color: {{ $category->color }}"
@@ -91,7 +91,7 @@ new #[Layout('layouts.public')] class extends Component
                         <div class="flex flex-wrap gap-2">
                             @foreach($post->tags as $tag)
                                 <a 
-                                    href="{{ route('blog.index', ['tag' => $tag->slug]) }}" 
+                                    href="{{ route('news.index', ['tag' => $tag->slug]) }}" 
                                     wire:navigate
                                     class="text-sm text-indigo-600 hover:text-indigo-800"
                                 >
@@ -122,6 +122,6 @@ new #[Layout('layouts.public')] class extends Component
             </div>
         </footer>
         {{-- Comment section --}}
-        <livewire:blog.comments :post="$post" />
+        <livewire:news.comments :post="$post" />
     </article>
 </div>

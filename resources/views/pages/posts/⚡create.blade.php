@@ -79,7 +79,7 @@ new class extends Component
 <div>
     <div class="mb-6">
         <h1 class="text-2xl font-bold text-gray-900">Create New Post</h1>
-        <p class="mt-1 text-sm text-gray-600">Write and publish your blog post</p>
+        <p class="mt-1 text-sm text-gray-600">Write and publish your news post</p>
     </div>
 
     {{-- form --}}
