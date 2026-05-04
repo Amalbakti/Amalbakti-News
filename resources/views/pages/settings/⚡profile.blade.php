@@ -109,14 +109,17 @@ new class extends Component {
 
             <div class="flex items-center gap-4">
                 <div class="flex items-center justify-end">
-                    <flux:button variant="primary" type="submit" class="w-full" data-test="update-profile-button">
+                    <flux:button variant="primary" type="submit" class="w-full  dark:bg-indigo-300" data-test="update-profile-button">
                         {{ __('Save') }}
                     </flux:button>
                 </div>
 
-                <x-action-message class="me-3" on="profile-updated">
+                <!-- <x-action-message class="me-3" on="profile-updated">
                     {{ __('Saved.') }}
-                </x-action-message>
+                </x-action-message> -->
+                <x-toast on="profile-updated">
+                    {{ __('Profile berhasil di-update.') }}
+                </x-toast>
             </div>
         </form>
 

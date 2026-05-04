@@ -2,6 +2,7 @@
 
 use App\Concerns\PasswordValidationRules;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
@@ -70,14 +71,17 @@ new class extends Component {
 
             <div class="flex items-center gap-4">
                 <div class="flex items-center justify-end">
-                    <flux:button variant="primary" type="submit" class="w-full" data-test="update-password-button">
+                    <flux:button variant="primary" type="submit" class="w-full dark:bg-indigo-300" data-test="update-password-button">
                         {{ __('Save') }}
                     </flux:button>
                 </div>
 
-                <x-action-message class="me-3" on="password-updated">
+                <!-- <x-action-message class="me-3" on="password-updated">
                     {{ __('Saved.') }}
-                </x-action-message>
+                </x-action-message> -->
+                <x-toast on="password-updated">
+                    {{ __('Password berhasil di-update.') }}
+                </x-toast>
             </div>
         </form>
     </x-pages::settings.layout>

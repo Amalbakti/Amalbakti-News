@@ -45,11 +45,6 @@ new #[Layout('layouts.public')] class extends Component
             </a>
         </div>
 
-        <!-- Featured Image -->
-        @if($post->featured_image)
-            <img src="{{ Storage::url($post->featured_image) }}" alt="{{ $post->title }}" class="w-full h-96 object-cover rounded-lg mb-8">
-        @endif
-
         <!-- Post Header -->
         <header class="mb-8">
             <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -60,7 +55,7 @@ new #[Layout('layouts.public')] class extends Component
                 <img src="https://ui-avatars.com/api/?name={{ urlencode($post->user->name) }}&background=4f46e5&color=fff" alt="{{ $post->user->name }}" class="w-10 h-10 rounded-full mr-3">
                 <div>
                     <p class="font-medium text-gray-900">{{ $post->user->name }}</p>
-                    <p class="text-sm">{{ $post->published_at->format('F d, Y') }} • {{ ceil(str_word_count(strip_tags($post->content)) / 200) }} min read • {{ number_format($post->views_count) }} views</p>
+                    <p class="text-sm">{{ $post->published_at->format('d F Y') }} • {{ ceil(str_word_count(strip_tags($post->content)) / 200) }} min read • {{ number_format($post->views_count) }} views</p>
                 </div>
             </div>
             <!-- Categories and Tags -->
@@ -103,6 +98,11 @@ new #[Layout('layouts.public')] class extends Component
                 @endif
             </div>
         </header>
+
+<!-- Featured Image -->
+        @if($post->featured_image)
+            <img src="{{ Storage::url($post->featured_image) }}" alt="{{ $post->title }}" class="w-full h-96 object-cover rounded-lg mb-8">
+        @endif
 
         <!-- Post Content -->
         <div class="prose prose-lg prose-indigo max-w-none mb-12">

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Tag;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
@@ -19,11 +20,20 @@ class CategorySeeder extends Seeder
                 'name' => 'Technology', 'description' => 'Tech news and tutorials',
                 'color' => '#3b82f6'],
             [
+                'name' => 'Sport', 'description' => 'Sport news and tutorials',
+                'color' => '#84cc16'],
+            [
                 'name' => 'Business', 'description' => 'Business insights and strategies',
                 'color' => '#10b981'],
             [
+                'name' => 'Politik', 'description' => 'Politik news',
+                'color' => '#f59e0b'],
+            [
                 'name' => 'Lifestyle', 'description' => 'Lifestyle tips and stories',
                 'color' => '#f59e0b'],
+            [
+                'name' => 'Ekonomi', 'description' => 'Ekonomi news',
+                'color' => '#3b82f6'],
             [
                 'name' => 'Travel', 'description' => 'Travel guides and experiences',
                 'color' => '#8b5cf6'],
@@ -38,7 +48,8 @@ class CategorySeeder extends Seeder
                 'color' => '#ef4444'],
         ];
         foreach ($categories as $category) {
-            Category::create($category);
+            $category['slug'] = Str::slug($category['name']);
+            Category::updateOrCreate(['slug' => $category['slug']], $category);
         }
 
         // Crete tags
@@ -57,8 +68,10 @@ class CategorySeeder extends Seeder
             'Tutorials',
         ];
         foreach ($tags as $tag) {
-            Tag::create([
-                'name' => $tag]);
+            Tag::updateOrCreate(
+            ['slug' => Str::slug($tag)],
+            ['name' => $tag, 'slug' => Str::slug($tag)]
+        );
         }
     }
 }
